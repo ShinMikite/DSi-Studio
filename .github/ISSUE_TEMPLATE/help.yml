@@ -1,0 +1,26 @@
+name: Help with DSi Studio
+description: Ask a setup question or report a problem with a test build.
+title: "Help: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tell us what you see on the screen. You do not need to know programming.
+        Please do not upload games, NAND backups, console identity files or private keys.
+  - type: input
+    id: version
+    attributes:
+      label: Studio version
+      description: Shown on the title screen. If you cannot open Studio, say so.
+  - type: input
+    id: setup
+    attributes:
+      label: Console and cartridge
+      placeholder: For example, USA DSi with DSpico
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: What were you trying to do, and what appeared on the screen? Include the exact error message if there was one.
+    validations:
+      required: true

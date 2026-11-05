@@ -1,0 +1,25 @@
+DSi Studio
+
+Project code is distributed under GPL-3.0-or-later unless an individual file
+states otherwise. LICENSE contains the GPL version 3 text.
+
+NAND Title Manager (NTM)
+https://github.com/Epicpkmn11/NTM
+Cryptographic sources and headers are preserved under vendor/ntm-crypto.
+ORIGIN.txt records the exact upstream revision. The save formatter derives
+from NTM with additional error checks. Original authorship and license
+headers, including earlier cryptographic implementations, are retained.
+
+BlocksDS / libnds
+https://blocksds.skylyrac.net/
+The ARM7 core retains its Zlib license header. Build files derived from
+BlocksDS/NTM retain their CC0 notices. libnds and dswifi are external build
+dependencies, not bundled source in this repository.
+
+mbedTLS
+https://github.com/Mbed-TLS/mbedtls
+External native cryptography dependency; see the installed version's license.
+
+Artwork and audio
+See assets/ARTWORK.txt. Nintendo artwork is not covered by the project's GPL
+license.

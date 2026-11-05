@@ -1,0 +1,11 @@
+Source: https://github.com/Epicpkmn11/NTM
+Revision: 3b22f1ff871f0641b854a9bef729f9211b273f51
+
+source/ and include/ contain the unmodified files from
+arm9/source/crypto/ and arm9/include/crypto/ at that revision.
+The upstream license is preserved in LICENSE.txt. Individual file headers
+identify earlier sources and licenses and must be retained.
+
+DSi Studio's arm9/source/sav.c and arm9/include/sav.h also derive from NTM;
+Studio adds allocation, seek, size and write-result checks to the formatter.
+The BlocksDS makefiles derive from the upstream CC0 build files.
