@@ -1,5 +1,5 @@
 name: Help with DSi Studio
-description: Ask a setup question or report a problem with a test build.
+description: Ask a setup question or report a problem with DSi Studio.
 title: "Help: "
 body:
   - type: markdown

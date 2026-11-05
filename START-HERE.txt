@@ -1,0 +1,72 @@
+DSi Studio 0.4.2
+===============
+
+Read this before copying files to your card.
+
+You need a DSi and charger, a working DSpico with DSi storage access,
+and your own complete DSiWare game folders. Studio runs offline.
+
+Installing changes the DSi's internal storage. A failed write can leave it
+unable to start. Studio requires a backup but cannot restore it. A backup
+alone does not provide recovery. This is experimental software.
+
+1. EXTRACT THE DOWNLOAD
+   Windows: right-click the ZIP and choose Extract All.
+   Mac: double-click the ZIP.
+
+2. COPY STUDIO TO YOUR CARD
+   Power off your DSi. Put the DSpico's microSD in a computer card reader.
+   Open COPY TO SD CARD in the extracted download.
+   Copy the Games, DSiWare and _pico folders inside it to the first folder
+   of your microSD. Merge their contents; keep existing files.
+   Do not replace or delete the card's entire _pico folder.
+
+   If your computer offers to replace a whole folder, cancel and copy
+   the files individually:
+     Games/DSiStudio.nds
+     _pico/covers/user/DSiStudio.nds.bmp
+   Create the folders if they do not exist. Also create DSiWare.
+
+   Updating? Save the old DSiStudio.nds on your computer before replacing
+   that file. Leave your DSiStudio/backups folder on the card intact.
+
+3. ADD YOUR GAME FOLDERS
+   Drag your complete game folders into DSiWare on the card.
+   Each unpacked game needs a matching .tmd file beside it, for example:
+
+     DSiWare/My Game/Game.nds
+     DSiWare/My Game/Game.tmd
+
+   Names before the dot must match. The .tmd must belong to that exact
+   game and version. Studio does not download missing files or open ZIPs.
+
+4. OPEN STUDIO
+   Eject the microSD using your computer's eject option. Return it to the
+   DSpico and insert the DSpico into your powered-off DSi.
+   Connect the charger, turn on the DSi, then open Games > DSi Studio.
+   Choose Open library. If it says Browsing only, see the help link below.
+
+5. BACK UP THIS DSi
+   Follow the backup prompt. Saving and checking can take several minutes.
+   Keep the charger and card connected until both steps finish.
+   Before installing games, power off and copy the card's entire
+   DSiStudio/backups folder to your computer. Keep the original on the card.
+   Each DSi has its own backup folder; keep them all when using several DSis.
+
+6. INSTALL
+   Return the card to the DSpico and reopen Studio. It checks the backup
+   once per session. Choose a game and select Copy to DSi.
+   Read the message, then hold A or Hold to copy until copying starts.
+   Keep power and the card connected. Wait for Added to your DSi.
+   Choose Done to install another game without restarting.
+
+7. PLAY
+   When finished, power off, remove the DSpico and turn the DSi on normally.
+   Open the installed game from the Home Menu.
+
+Full guide: https://github.com/ShinMikite/DSi-Studio/blob/main/docs/GETTING-STARTED.md
+Help: https://github.com/ShinMikite/DSi-Studio/blob/main/docs/HELP.md
+Recovery: https://github.com/ShinMikite/DSi-Studio/blob/main/docs/RECOVERY.md
+
+If a copy fails, note the exact message and ask for help before retrying.
+Do not upload games, console backups, console identity files or private keys.

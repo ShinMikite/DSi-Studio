@@ -5,6 +5,17 @@
 !/README.md
 !/LICENSE
 !/THIRD-PARTY-NOTICES.txt
+!/START-HERE.txt
+!/licenses/
+/licenses/*
+!/licenses/libnds.txt
+!/licenses/dswifi.txt
+!/licenses/fatfs.txt
+!/licenses/mbedtls.txt
+!/licenses/blocksds-crt-mpl2.txt
+!/licenses/blocksds-crt-zlib.txt
+!/licenses/picolibc.txt
+!/licenses/gcc-runtime-exception.txt
 !/Makefile
 !/Makefile.arm7
 !/Makefile.arm9

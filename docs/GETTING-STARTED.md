@@ -2,7 +2,7 @@
 
 [Back to DSi Studio](../README.md) · [Questions and help](HELP.md)
 
-These instructions are for people who have received a **DSi Studio test build**. There is no public download yet. Do not use GitHub's **Code → Download ZIP** as the app download.
+Download **[DSiStudio-0.4.2.zip](https://github.com/ShinMikite/DSi-Studio/releases/download/v0.4.2/DSiStudio-0.4.2.zip)**. Do not use GitHub's **Code → Download ZIP** as the app download.
 
 ## 1. Check your DSpico first
 
@@ -18,7 +18,13 @@ Power off the DSi. Remove the microSD from the DSpico and connect it to your com
 
 Open the card in your computer's file browser. The first folder you see is often called the card's **root**. On an already prepared Pico card, you will usually see `_pico` and `_picoboot.nds` there. Leave them in place.
 
-Open or create a folder named **Games** and copy **DSiStudio.nds** into it. If your test build came in a ZIP, extract the ZIP first. On Windows, right-click the ZIP and choose **Extract All**; on macOS, double-click it.
+Extract the download first. On Windows, right-click the ZIP and choose **Extract All**; on macOS, double-click it.
+
+Open **COPY TO SD CARD** in the extracted download. Copy **Games**, **DSiWare** and **_pico** into the card's first folder, merging their contents with any existing folders. Keep existing files. Do not replace or delete the card's entire `_pico` folder.
+
+If your computer offers to replace a whole folder, cancel. Instead, copy **DSiStudio.nds** into the card's **Games** folder, create **DSiWare** if needed, and copy **DSiStudio.nds.bmp** into **_pico → covers → user**. Create those cover folders if they are missing.
+
+If you already have Studio, save a copy of your old **DSiStudio.nds** on the computer before replacing that one file. Leave the **DSiStudio → backups** folder on the card intact.
 
 ## 3. Add a game
 

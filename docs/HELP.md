@@ -4,7 +4,7 @@
 
 ## Where is the download?
 
-There is no public app download yet. If you have not been given a test build, wait for a published release. GitHub's **Code → Download ZIP** contains project source files, not the finished app.
+Download **DSiStudio-0.4.2.zip** from [Releases](https://github.com/ShinMikite/DSi-Studio/releases). Extract it and open **START HERE.txt**. GitHub's **Code → Download ZIP** contains project source files, not the finished app.
 
 ## Do I need a Windows app?
 

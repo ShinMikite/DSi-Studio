@@ -10,15 +10,39 @@ ORIGIN.txt records the exact upstream revision. The save formatter derives
 from NTM with additional error checks. Original authorship and license
 headers, including earlier cryptographic implementations, are retained.
 
-BlocksDS / libnds
+BlocksDS 1.25.0 / libnds / FatFs
 https://blocksds.skylyrac.net/
 The ARM7 core retains its Zlib license header. Build files derived from
-BlocksDS/NTM retain their CC0 notices. libnds and dswifi are external build
-dependencies, not bundled source in this repository.
+BlocksDS/NTM retain their CC0 notices. libnds and FatFs license notices are
+included in licenses/libnds.txt and licenses/fatfs.txt.
 
-mbedTLS
+DSWifi
+The SDK cryptography library uses Wifi_Random from the no-IP support library.
+Studio does not initialize Wi-Fi or make network connections. The DSWifi
+copyright notice and MIT terms are included in licenses/dswifi.txt.
+
+BlocksDS startup code
+The startup code's Source Code Form is governed by the Mozilla Public
+License 2.0, with additional Zlib-licensed components. Copies of both
+licenses are in licenses/blocksds-crt-mpl2.txt and licenses/blocksds-crt-zlib.txt.
+Source: https://github.com/blocksds/sdk/tree/v1.25.0/sys/crts
+
+Mbed TLS 3.6.4
 https://github.com/Mbed-TLS/mbedtls
-External native cryptography dependency; see the installed version's license.
+Copyright The Mbed TLS Contributors.
+The linked cryptography library is used under its Apache-2.0 option.
+The upstream license file is included in licenses/mbedtls.txt.
+
+picolibc
+This product includes software developed by the University of California,
+Berkeley and its contributors, and software from the Newlib and picolibc
+projects. Copyright notices and license terms are in licenses/picolibc.txt.
+Toolchain package: 1.8.13.r26367.770d86889-1.
+Source: https://codeberg.org/WonderfulToolchain/wf-picolibc/src/commit/770d86889
+
+GCC runtime library
+The GCC runtime is covered by GPL-3.0-or-later with the GCC Runtime Library
+Exception 3.1. See LICENSE and licenses/gcc-runtime-exception.txt.
 
 Artwork and audio
 See assets/ARTWORK.txt. Nintendo artwork is not covered by the project's GPL

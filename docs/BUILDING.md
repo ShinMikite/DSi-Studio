@@ -1,6 +1,6 @@
 # Building DSi Studio
 
-The native app uses BlocksDS, the Wonderful toolchain, libnds, dswifi and mbedTLS. It has been compiled with BlocksDS 1.25.0. Follow the [BlocksDS installation guide](https://blocksds.skylyrac.net/docs/setup/) to install the toolchain.
+The native app uses BlocksDS, the Wonderful toolchain, libnds and mbedTLS. The SDK's cryptography dependency also links the no-IP DSWifi support library; Studio does not initialize Wi-Fi or make network connections. It has been compiled with BlocksDS 1.25.0 and mbedTLS 3.6.4. Follow the [BlocksDS installation guide](https://blocksds.skylyrac.net/docs/setup/) to install the toolchain.
 
 From a configured shell:
 
