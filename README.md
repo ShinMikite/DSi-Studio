@@ -1,6 +1,8 @@
 # DSi Studio
 
-Browse your DSiWare collection and copy supported games to your Nintendo DSi Home Menu.
+A simple, offline DSiWare installer for Nintendo DSi using DSpico. Browse your games with touch controls and follow the guided steps to add supported titles to your DSi Home Menu.
+
+Studio focuses on complete extracted game folders, required console backups and a straightforward installation flow. It builds on existing DSi homebrew work, including [NAND Title Manager (NTM)](https://github.com/Epicpkmn11/NTM).
 
 **[Start here](docs/GETTING-STARTED.md) · [Help](docs/HELP.md) · [Backups and recovery](docs/RECOVERY.md)**
 
@@ -20,7 +22,7 @@ Studio runs offline. Users supply their own games and matching information files
 
 Original folders containing files such as `00000000` and `tmd.0` work directly. Existing `game.nds` + `game.tmd` folders still work. Folder names can be readable names or numeric title IDs; Studio reads the display name from the game itself. No renaming or PC helper is needed. See [supported game folders](docs/GETTING-STARTED.md#3-add-a-game).
 
-You need a DSi, its charger, a working DSpico with DSi storage access, and a microSD card. An ordinary R4 launch can browse games but cannot install them with Studio. The [setup guide](docs/GETTING-STARTED.md) explains the folders and screens.
+You need a DSi, its charger, a working DSpico with DSi storage access, and a microSD card. **DSpico is the supported installation setup.** An ordinary R4 launch can browse games but cannot install them with Studio. The [setup guide](docs/GETTING-STARTED.md) explains the folders and screens.
 
 ## Download
 
@@ -34,7 +36,11 @@ Installing changes the DSi's internal storage. A failed write can leave the cons
 
 This is experimental software. Hardware testing has used USA DSi consoles with DSpico; other models, regions and launch methods have not been verified.
 
-## Source and licenses
+## Credits and source
+
+Studio uses cryptographic code from [NTM by Epicpkmn11 and contributors](https://github.com/Epicpkmn11/NTM), and its save formatter derives from NTM with additional error checks. The [source origins](vendor/ntm-crypto/ORIGIN.txt) record the upstream revision and reused components. Original authorship and license notices are preserved.
+
+Studio also uses BlocksDS, the Wonderful toolchain, libnds, FatFs, Mbed TLS and their dependencies. See the [third-party notices](THIRD-PARTY-NOTICES.txt) for credits and license details.
 
 [Build instructions](docs/BUILDING.md) · [License](LICENSE) · [Third-party notices](THIRD-PARTY-NOTICES.txt) · [Artwork](assets/ARTWORK.txt)
 
