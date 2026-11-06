@@ -18,6 +18,7 @@ bool studio_nand=false,studio_crypto=false;
 uint32_t studio_console_id[2]={0};
 char studio_root[8]="fat:/";
 static int top_bg,bottom_bg;
+static StudioStorage storage;
 
 void studio_present(void) {
     swiWaitForVBlank();
@@ -26,7 +27,7 @@ void studio_present(void) {
     dmaCopy(studio_bottom,bgGetGfxPtr(bottom_bg),sizeof(studio_bottom));
 }
 static void library(void) {
-    ui_library(studio_games,studio_count,studio_selected,!strcmp(studio_root,"fat:/")?"FLASHCARD SD":"DSi SD CARD",studio_nand&&studio_crypto);
+    ui_library(studio_games,studio_count,studio_selected,!strcmp(studio_root,"fat:/")?"FLASHCARD SD":"DSi SD CARD",studio_nand&&studio_crypto,&storage);
 }
 static void release_keys(void) { do { swiWaitForVBlank(); scanKeys(); } while(keysHeld()&(KEY_A|KEY_B|KEY_TOUCH)); }
 static UiAction touch_panel(UiTouch *state,UiPanel mode) {
@@ -125,6 +126,7 @@ void studio_scan(void) {
     char dir[32]; snprintf(dir,sizeof(dir),"%sDSiWare",studio_root);
     ui_panel("LIBRARY","Reading games on your card...",UI_PROGRESS,-1); studio_present();
     scan_dir(dir,0); qsort(studio_games,studio_count,sizeof(StudioGame),compare);
+    studio_storage_read(&storage);
 }
 static void setup_storage(int argc,char **argv) {
     bool sd=fatInitDefault(); (void)sd;
@@ -225,8 +227,10 @@ int main(int argc,char **argv) {
         if(action==UI_REFRESH) { studio_sound(AUDIO_ACCEPT); studio_scan(); }
         if(action==UI_BACKUP) { studio_sound(AUDIO_ACCEPT); studio_backup(false); }
         if(action==UI_HELP) help();
-        if(action==UI_HOME) { studio_sound(AUDIO_BACK); title_screen(); }
-        if(action==UI_COPY && studio_count) { studio_sound(AUDIO_ACCEPT); studio_install(&studio_games[studio_selected]); }
+        if(action==UI_HOME) { studio_sound(AUDIO_BACK); title_screen(); studio_storage_read(&storage); }
+        if(action==UI_COPY && studio_count) {
+            studio_sound(AUDIO_ACCEPT); studio_install(&studio_games[studio_selected]); studio_storage_read(&storage);
+        }
         if(studio_nand && studio_crypto && !studio_backup_ready()) title_screen();
         if(action>=UI_COPY && action!=UI_PREV && action!=UI_NEXT) { touch=(UiTouch){0}; ui_set_pressed(UI_NONE); release_keys(); }
         library(); studio_present();

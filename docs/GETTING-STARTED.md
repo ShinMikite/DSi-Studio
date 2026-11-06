@@ -2,7 +2,7 @@
 
 [Back to DSi Studio](../README.md) · [Questions and help](HELP.md)
 
-Download **[DSiStudio-0.4.3.zip](https://github.com/ShinMikite/DSi-Studio/releases/download/v0.4.3/DSiStudio-0.4.3.zip)**. Do not use GitHub's **Code → Download ZIP** as the app download.
+Download **[DSiStudio-0.4.4.zip](https://github.com/ShinMikite/DSi-Studio/releases/download/v0.4.4/DSiStudio-0.4.4.zip)**. Do not use GitHub's **Code → Download ZIP** as the app download.
 
 ## 1. Check your DSpico first
 
@@ -76,6 +76,8 @@ For a second DSi, Studio creates another console-specific backup folder. Keep bo
 ## 6. Install a game
 
 Open Studio again and choose **Open library**. A new Studio session checks the full backup once. Later installations in that same session reuse that check.
+
+The top screen shows **DSi free** in blocks and MB: the remaining space Studio can use for games. The figure refreshes after each installation. A full Home Menu or unavailable storage information is shown there instead when applicable.
 
 Select your game, then tap **Copy to DSi**. Studio checks the game before showing a confirmation. Read the message, then hold **A** or the **Hold to copy** button until copying starts.
 

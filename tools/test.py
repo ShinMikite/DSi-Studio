@@ -17,6 +17,7 @@ def main():
     (ROOT/'artifacts').mkdir(exist_ok=True)
     suites = {
         'test_catalog': ['common/catalog.c'],
+        'test_storage': ['common/storage.c'],
         'test_backup_format': ['common/backup_format.c'],
         'test_backup_session': ['common/backup_session.c', 'common/backup_format.c'],
         'test_ui_input': ['common/ui_input.c'],

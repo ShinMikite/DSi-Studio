@@ -14,6 +14,7 @@
 #include "ticket0.h"
 #include "messages.h"
 #include "game_files.h"
+#include "storage.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -140,6 +141,16 @@ static int title_count(void) {
     }
     return count;
 }
+bool studio_storage_read(StudioStorage *storage) {
+    *storage=(StudioStorage){0};
+    if(!studio_nand || !studio_crypto) return false;
+    struct statvfs fs;
+    if(statvfs("nand:/",&fs) || !fs.f_bsize || fs.f_bsize>UINT32_MAX) return false;
+    uint64_t used=0;
+    int slots=title_count();
+    if(slots<0 || !usage("nand:/title/00030004",&used,(uint32_t)fs.f_bsize,0)) return false;
+    return studio_storage_capacity(fs.f_bavail,fs.f_bsize,used,(unsigned)slots,storage);
+}
 bool studio_install(StudioGame *g) {
     const char *error=NULL;
     if(!studio_nand || !studio_crypto) { studio_notice("DSi ACCESS NEEDED","Copying needs DSi NAND access. Use DSpico with a DSi-mode entry point or DSi ntrboot. Ordinary R4 launch is browse-only."); return false; }
@@ -164,14 +175,12 @@ bool studio_install(StudioGame *g) {
     if(!verify_tmd(t)) { studio_backup_reset(); studio_notice("SIGNATURE CHECK FAILED","The title metadata could not be verified using this console's certificate. Copying was stopped."); return false; }
     unsigned char hash[20];
     if(!digest_file(checked.path,hash,"Checking game integrity...") || memcmp(hash,checked.hash,20)) { studio_backup_reset(); studio_notice("GAME CHECK FAILED","The ROM and .tmd do not match, or the ROM could not be read. Copy the matching files to the card again."); return false; }
-    struct statvfs fs;
-    if(statvfs("nand:/",&fs) || !fs.f_bsize) { studio_backup_reset(); studio_notice("STORAGE UNAVAILABLE","Internal storage information could not be read."); return false; }
-    uint64_t cluster=fs.f_bsize,needed=8*cluster;
+    StudioStorage storage;
+    if(!studio_storage_read(&storage)) { studio_backup_reset(); studio_notice("STORAGE UNAVAILABLE","Internal storage information could not be read."); return false; }
+    uint64_t cluster=storage.cluster_size,needed=8*cluster;
     uint64_t parts[]={checked.size,checked.public_size,checked.private_size,(checked.appflags&4)?0x4000:0,520,sizeof(ticket_v0_t)+0x20};
     for(int i=0;i<6;i++) needed+=(parts[i]+cluster-1)/cluster*cluster;
-    uint64_t used=0; int slots=title_count();
-    if(!usage("nand:/title/00030004",&used,cluster,0) || slots<0 || slots>=39 ||
-       needed+1024*1024>(uint64_t)fs.f_bavail*cluster || used+needed>128*1024*1024) {
+    if(!storage.free_slots || needed>storage.free_bytes) {
         studio_notice("NOT ENOUGH SPACE","The DSi Menu needs a free title slot and enough internal storage. No files were changed."); return false;
     }
     if(!studio_confirm("COPY TO DSi MENU?",STUDIO_COPY_WARNING)) return false;

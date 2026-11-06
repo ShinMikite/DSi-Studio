@@ -15,10 +15,19 @@ int main(void) {
         for(int y=0;y<32;y++) for(int x=0;x<32;x++) g[i].icon[y*32+x]=0x8000|((5+i*4)&31)|(((x+y)/3&31)<<5)|((20+i*2)<<10);
     }
     g[1].installed=true;
-    ui_library(g,5,0,"FLASHCARD SD",true); save("artifacts/library.ppm");
+    StudioStorage storage={.free_bytes=83*1048576,.cluster_size=4096,.free_slots=20,.known=true};
+    ui_library(g,5,0,"FLASHCARD SD",true,&storage); save("artifacts/library.ppm");
     ui_panel("COPY TO DSi MENU?",STUDIO_COPY_WARNING,UI_HOLD,40); save("artifacts/confirm.ppm");
-    ui_library(g,0,0,"FLASHCARD SD",false); save("artifacts/empty.ppm");
-    ui_library(g,5,4,"DSi SD CARD",false); save("artifacts/last-page.ppm");
+    ui_library(g,0,0,"FLASHCARD SD",false,NULL); save("artifacts/empty.ppm");
+    ui_library(g,5,4,"DSi SD CARD",false,NULL); save("artifacts/last-page.ppm");
+    storage.free_bytes=128*1048576;
+    ui_library(g,5,0,"FLASHCARD SD",true,&storage); save("artifacts/storage-full-capacity.ppm");
+    storage.free_bytes=4096;
+    ui_library(g,5,0,"FLASHCARD SD",true,&storage); save("artifacts/storage-low.ppm");
+    storage.free_slots=0;
+    ui_library(g,5,0,"FLASHCARD SD",true,&storage); save("artifacts/storage-no-slots.ppm");
+    strcpy(g[0].issue,"More than one game version matches. Keep each version in its own folder.");
+    ui_library(g,5,0,"FLASHCARD SD",true,&storage); save("artifacts/storage-with-issue.ppm");
     ui_title(); save("artifacts/title.ppm");
     ui_help(0); save("artifacts/help-install.ppm");
     ui_help(1); save("artifacts/help.ppm");

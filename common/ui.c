@@ -86,25 +86,35 @@ static void header(uint16_t *p,const char *title) {
     UiRect b=ink(title,42);
     box(p,0,0,256,35,WHITE); center(p,8,(35-b.h)/2-b.y,240,title,INK); box(p,0,34,256,1,LINE);
 }
-void ui_library(const StudioGame *g,int count,int sel,const char *source,bool nand) {
+void ui_library(const StudioGame *g,int count,int sel,const char *source,bool nand,const StudioStorage *storage) {
     background(studio_top); background(studio_bottom);
     box(studio_top,0,0,256,38,WHITE); shop(studio_top,6,2,1);
     text(studio_top,44,8,"DSi Studio",INK,2,10); text(studio_top,216,16,STUDIO_VERSION,MUTED,1,5); box(studio_top,0,37,256,1,LINE);
     if(count>0) {
         const StudioGame *v=&g[sel];
-        rounded(studio_top,(UiRect){8,46,240,91},WHITE);
+        rounded(studio_top,(UiRect){8,46,240,80},WHITE);
         rounded(studio_top,(UiRect){14,52,72,72},PALE); icon(studio_top,18,56,v,2);
         wrap(studio_top,94,53,v->title,24,3,INK);
         text(studio_top,94,110,v->installed?"INSTALLED":v->metadata?"DSiWARE":"NEEDS PREPARATION",v->installed?GREEN:BLUE,1,24);
         char size[25],blocks[25]; snprintf(size,sizeof(size),"%.1f MB",(double)v->size/1048576);
         snprintf(blocks,sizeof(blocks),"%lu blocks",(unsigned long)((v->size+v->public_size+v->private_size+131071)/131072));
-        text(studio_top,14,143,size,INK,1,18); text(studio_top,138,143,blocks,MUTED,1,18);
+        text(studio_top,14,129,size,INK,1,18); text(studio_top,138,129,blocks,MUTED,1,18);
         const char *hint=v->issue[0]?v->issue:v->installed?"Already on this DSi.":nand?"Select Copy to DSi to begin checks.":"Browse only. DSi access required.";
-        wrap(studio_top,14,161,hint,38,2,MUTED);
+        wrap(studio_top,14,144,hint,38,2,MUTED);
     } else {
         shop(studio_top,96,51,2); center(studio_top,0,124,256,"No games found",INK);
-        center(studio_top,0,147,256,"Add games to /DSiWare",MUTED); center(studio_top,0,163,256,"then select Scan.",MUTED);
+        center(studio_top,0,143,256,"Add games to /DSiWare",MUTED); center(studio_top,0,156,256,"then select Scan.",MUTED);
     }
+    char capacity[64];
+    if(!storage || !storage->known) snprintf(capacity,sizeof(capacity),"DSi free space unavailable");
+    else if(!storage->free_slots) snprintf(capacity,sizeof(capacity),"DSi Menu full - no free slots");
+    else {
+        unsigned long tenths=(unsigned long)(storage->free_bytes*10/1048576);
+        snprintf(capacity,sizeof(capacity),"DSi free: %lu blocks (%lu.%lu MB)",
+                 (unsigned long)(storage->free_bytes/STUDIO_BLOCK_BYTES),tenths/10,tenths%10);
+    }
+    box(studio_top,0,173,256,19,WHITE); box(studio_top,0,173,256,1,LINE);
+    center(studio_top,8,177,240,capacity,storage && storage->known?INK:MUTED);
     text(studio_bottom,9,11,"LIBRARY",INK,1,10);
     button(UI_CARD,"L","Switch card",false,true); button(UI_REFRESH,"X","Scan",false,true);
     int page=sel/4;

@@ -1,4 +1,4 @@
-DSi Studio 0.4.3
+DSi Studio 0.4.4
 ===============
 
 Read this before copying files to your card.
@@ -66,7 +66,8 @@ alone does not provide recovery. This is experimental software.
 
 6. INSTALL
    Return the card to the DSpico and reopen Studio. It checks the backup
-   once per session. Choose a game and select Copy to DSi.
+   once per session. The top screen shows available DSi game space in
+   blocks and MB. Choose a game and select Copy to DSi.
    Read the message, then hold A or Hold to copy until copying starts.
    Keep power and the card connected. Wait for Added to your DSi.
    Choose Done to install another game without restarting.

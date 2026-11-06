@@ -6,7 +6,7 @@ Studio focuses on complete extracted game folders, required console backups and 
 
 **[Start here](docs/GETTING-STARTED.md) · [Help](docs/HELP.md) · [Backups and recovery](docs/RECOVERY.md)**
 
-**[Download DSi Studio 0.4.3](https://github.com/ShinMikite/DSi-Studio/releases/download/v0.4.3/DSiStudio-0.4.3.zip)**
+**[Download DSi Studio 0.4.4](https://github.com/ShinMikite/DSi-Studio/releases/download/v0.4.4/DSiStudio-0.4.4.zip)**
 
 Extract the ZIP and open **START HERE.txt**. Copy the folders inside **COPY TO SD CARD** onto your DSpico microSD.
 
@@ -18,6 +18,8 @@ Extract the ZIP and open **START HERE.txt**. Copy the folders inside **COPY TO S
 4. Choose a game and select **Copy to DSi**. Follow the checks and hold to confirm.
 5. Add another game, or power off, remove the DSpico and restart to play from the Home Menu.
 
+The library shows your available DSi game space in blocks and MB and refreshes it after each installation.
+
 Studio runs offline. Users supply their own games and matching information files. Games, firmware and console backups are not included.
 
 Original folders containing files such as `00000000` and `tmd.0` work directly. Existing `game.nds` + `game.tmd` folders still work. Folder names can be readable names or numeric title IDs; Studio reads the display name from the game itself. No renaming or PC helper is needed. See [supported game folders](docs/GETTING-STARTED.md#3-add-a-game).
@@ -26,7 +28,7 @@ You need a DSi, its charger, a working DSpico with DSi storage access, and a mic
 
 ## Download
 
-Get **DSiStudio-0.4.3.zip** from [Releases](https://github.com/ShinMikite/DSi-Studio/releases). The source ZIP is for building the app yourself.
+Get **DSiStudio-0.4.4.zip** from [Releases](https://github.com/ShinMikite/DSi-Studio/releases). The source ZIP is for building the app yourself.
 
 GitHub's **Code → Download ZIP** downloads source code, not a ready-to-use app.
 

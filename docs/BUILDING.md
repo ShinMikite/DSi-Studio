@@ -28,8 +28,8 @@ python -m pip install -r tests/requirements.txt
 python tools/test.py
 ```
 
-Tests cover catalog parsing, original and prepared game folders, mismatched and ambiguous metadata, backup formats and session checks, touch controls, and installer error handling on a disposable host filesystem. The installer tests substitute hardware, cryptography and save formatting; they do not emulate a DSi. UI previews are written to `artifacts/`.
+Tests cover catalog parsing, original and prepared game folders, mismatched and ambiguous metadata, storage capacity and reserves, backup formats and session checks, touch controls, and installer error handling on a disposable host filesystem. The installer tests substitute hardware, cryptography and save formatting; they do not emulate a DSi. UI previews are written to `artifacts/`.
 
 ## Assets
 
-Run `python tools/make_audio.py` to reproduce the music and effects. The bitmap font is included; `tools/make_font.py` requires the named Windows font and Pillow.
+Run `python tools/make_audio.py` to reproduce the music and effects; this optional asset-generation step requires NumPy (`python -m pip install numpy`). The generated audio is included, so NumPy is not needed to build or use the app. The bitmap font is included; `tools/make_font.py` requires the named Windows font and Pillow.

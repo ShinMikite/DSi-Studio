@@ -20,7 +20,7 @@ class InstallerTests(unittest.TestCase):
         cls.binary = Path(cls.build.name)/('installer.exe' if os.name == 'nt' else 'installer')
         subprocess.run([os.environ.get('CC', 'gcc'), '-std=c11', '-Wall', '-Wextra', '-Werror',
                         '-Icommon', '-Itests', '-Ivendor/ntm-crypto/include',
-                        'tests/test_installer.c', 'common/catalog.c', '-o', str(cls.binary)],
+                        'tests/test_installer.c', 'common/catalog.c', 'common/storage.c', '-o', str(cls.binary)],
                        cwd=ROOT, check=True)
 
     @classmethod

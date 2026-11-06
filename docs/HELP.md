@@ -4,7 +4,7 @@
 
 ## Where is the download?
 
-Download **DSiStudio-0.4.3.zip** from [Releases](https://github.com/ShinMikite/DSi-Studio/releases). Extract it and open **START HERE.txt**. GitHub's **Code → Download ZIP** contains project source files, not the finished app.
+Download **DSiStudio-0.4.4.zip** from [Releases](https://github.com/ShinMikite/DSi-Studio/releases). Extract it and open **START HERE.txt**. GitHub's **Code → Download ZIP** contains project source files, not the finished app.
 
 ## Do I need a Windows app?
 
@@ -51,6 +51,12 @@ That is the full backup check. It can take several minutes and does not write to
 ## Can I install several games without restarting?
 
 Yes, one at a time. After **Added to your DSi**, dismiss the message and choose the next game. There is no multi-select queue. Restart normally when you have finished installing everything you want.
+
+## What does DSi free mean?
+
+In Studio 0.4.4 and later, the library's top screen shows the remaining space available for game installation in blocks and MB. A block is 128 KiB. The figure accounts for Studio's game-storage limit and the internal-storage reserve it keeps free. Game files, saves and installation overhead all use space, so Studio still checks each installation before copying.
+
+The readout refreshes when you open or scan the library and after every installation attempt. If the Home Menu has no free title slots, it says the menu is full. If Studio cannot read the storage information, it shows that the figure is unavailable.
 
 ## Can I use one card with several DSi consoles?
 

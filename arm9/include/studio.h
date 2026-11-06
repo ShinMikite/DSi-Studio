@@ -15,6 +15,7 @@ bool studio_choice(const char *title,const char *body);
 void studio_progress(const char *text,int percent);
 void studio_scan(void);
 bool studio_install(StudioGame *g);
+bool studio_storage_read(StudioStorage *storage);
 bool studio_backup(bool required);
 bool studio_backup_ready(void);
 bool studio_backup_check_cached(void);
