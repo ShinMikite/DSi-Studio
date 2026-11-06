@@ -2,7 +2,7 @@
 
 [Back to DSi Studio](../README.md) · [Questions and help](HELP.md)
 
-Download **[DSiStudio-0.4.4.zip](https://github.com/ShinMikite/DSi-Studio/releases/download/v0.4.4/DSiStudio-0.4.4.zip)**. Do not use GitHub's **Code → Download ZIP** as the app download.
+Download **[DSiStudio-0.4.5.zip](https://github.com/ShinMikite/DSi-Studio/releases/download/v0.4.5/DSiStudio-0.4.5.zip)**. Do not use GitHub's **Code → Download ZIP** as the app download.
 
 ## 1. Check your DSpico first
 
@@ -16,7 +16,7 @@ A working file menu is only the first check. Studio also needs access to the DSi
 
 Power off the DSi. Remove the microSD from the DSpico and connect it to your computer with a card reader. Use the microSD card, not the DSpico's USB firmware drive.
 
-Open the card in your computer's file browser. The first folder you see is often called the card's **root**. On an already prepared Pico card, you will usually see `_pico` and `_picoboot.nds` there. Leave them in place.
+Open the card itself in your computer's file browser. This top level, outside any folders on the card, is called its **root**. On an already prepared Pico card, you will usually see `_pico` and `_picoboot.nds` there. Leave them in place. Allow at least **260 MB free per DSi** for its required backup, in addition to your games.
 
 Extract the download first. On Windows, right-click the ZIP and choose **Extract All**; on macOS, double-click it.
 
@@ -50,7 +50,9 @@ The folder name does not matter. Readable game names and numeric title IDs both 
 
 Supported games contain already-decrypted DSiWare content: an eight-digit hexadecimal content filename, or a `.nds`, `.dsi`, `.srl` or `.app` file, plus matching retail metadata (`tmd.0`, `tmd.1`, another `tmd.N`, `tmd` or a `.tmd` file). Missing, mismatched or ambiguous metadata blocks installation. Studio verifies the metadata signature and complete content before writing. Encrypted content and multi-content packages are not supported. Extra `titleKey.bin` and `titlePass.txt` files can stay in the folder; Studio does not use them. No PC helper is needed.
 
-**Only have the game file?** Supply its matching `.tmd` before continuing. Studio runs offline and does not download missing files. [More help](HELP.md#i-only-have-a-game-file-no-tmd).
+Choose games that support your DSi's region. Studio checks the region before installation. Already-installed titles and their saves are not replaced.
+
+**Only have the game file?** Supply its matching metadata before continuing. [More help](HELP.md#i-only-have-a-game-file-no-tmd).
 
 ## 4. Open Studio
 
@@ -62,7 +64,7 @@ Turn on the DSi. In the Pico file menu, open **Games → DSi Studio**. On Studio
 
 The first time you use a console, Studio shows **First: Back up this DSi**. Choose **Back up** and wait for both saving and checking to finish. This takes several minutes. Keep the charger and card connected.
 
-The backup is a copy of the console's internal storage. It is required before the installation library opens. It does not change the DSi or install a recovery tool. [Read what a backup can and cannot do](RECOVERY.md).
+The backup is a copy of the console's internal storage, including installed games, saves, settings and internal photos at the time it is made. It is required before the installation library opens. Existing backups are checked rather than overwritten. [Read what a backup can and cannot do](RECOVERY.md).
 
 After the backup succeeds, preserve a second copy on your computer:
 

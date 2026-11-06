@@ -1,10 +1,12 @@
-DSi Studio 0.4.4
+DSi Studio 0.4.5
 ===============
 
 Read this before copying files to your card.
 
 You need a DSi and charger, a working DSpico with DSi storage access,
 and your own complete DSiWare game folders. Studio runs offline.
+Allow at least 260 MB of free card space per DSi for its backup,
+in addition to your games. Use games that support your console's region.
 
 Installing changes the DSi's internal storage. A failed write can leave it
 unable to start. Studio requires a backup but cannot restore it. A backup
@@ -63,6 +65,8 @@ alone does not provide recovery. This is experimental software.
    Before installing games, power off and copy the card's entire
    DSiStudio/backups folder to your computer. Keep the original on the card.
    Each DSi has its own backup folder; keep them all when using several DSis.
+   Keep nand.bin and backup.meta together. Existing complete backups are
+   checked, not updated with new games or saves.
 
 6. INSTALL
    Return the card to the DSpico and reopen Studio. It checks the backup
@@ -75,6 +79,8 @@ alone does not provide recovery. This is experimental software.
 7. PLAY
    When finished, power off, remove the DSpico and turn the DSi on normally.
    Open the installed game from the Home Menu.
+
+The download also includes HOW TO USE.txt, HELP.txt and BACKUPS AND RECOVERY.txt.
 
 Full guide: https://github.com/ShinMikite/DSi-Studio/blob/main/docs/GETTING-STARTED.md
 Help: https://github.com/ShinMikite/DSi-Studio/blob/main/docs/HELP.md

@@ -1,0 +1,20 @@
+X11 misc-fixed 6x10 bitmap font
+
+The included assets/fonts/6x10.bdf is from the misc-fixed Unicode font
+collection maintained by Markus Kuhn and contributors.
+
+The upstream file declares:
+COPYRIGHT "Public domain terminal emulator font.  Share and enjoy."
+
+Project and copyright information:
+https://www.cl.cam.ac.uk/~mgk25/ucs-fonts.html
+Source archive:
+https://www.cl.cam.ac.uk/~mgk25/download/ucs-fonts.tar.gz
+
+Recorded file revision: 6x10.bdf,v 1.35 2006-01-05 20:03:17+00 mgk25 Rel
+SHA-256 of the unmodified BDF:
+bb14d95828990eb3ada68a24d716ae640a674cd75ab6caca17c798e4cb385849
+
+common/font.h contains ASCII characters 32 through 126 from this font,
+converted to Studio's bit ordering with one blank row added at the top.
+tools/make_font.py reproduces the conversion without a system font.

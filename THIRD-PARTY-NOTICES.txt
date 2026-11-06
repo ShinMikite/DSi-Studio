@@ -3,12 +3,21 @@ DSi Studio
 Project code is distributed under GPL-3.0-or-later unless an individual file
 states otherwise. LICENSE contains the GPL version 3 text.
 
+Source paths refer to the matching source archive. The app download includes
+license copies in its Licenses folder, including DSi-Studio-GPL3.txt and NTM.txt.
+
 NAND Title Manager (NTM)
 https://github.com/Epicpkmn11/NTM
 Cryptographic sources and headers are preserved under vendor/ntm-crypto.
 ORIGIN.txt records the exact upstream revision. The save formatter derives
 from NTM with additional error checks. Original authorship and license
 headers, including earlier cryptographic implementations, are retained.
+The inherited save-formatting algorithm also credits d0k3/GodMode9 in sav.c.
+
+Backup format
+https://github.com/zoogie/dumpTool
+Studio's backup writer follows the no$gba footer layout and console-identity
+verification approach documented by dumpTool and the DSi homebrew community.
 
 BlocksDS 1.25.0 / libnds / FatFs
 https://blocksds.skylyrac.net/
@@ -17,9 +26,7 @@ BlocksDS/NTM retain their CC0 notices. libnds and FatFs license notices are
 included in licenses/libnds.txt and licenses/fatfs.txt.
 
 DSWifi
-The SDK cryptography library uses Wifi_Random from the no-IP support library.
-Studio does not initialize Wi-Fi or make network connections. The DSWifi
-copyright notice and MIT terms are included in licenses/dswifi.txt.
+Copyright notices and MIT license: licenses/dswifi.txt.
 
 BlocksDS startup code
 The startup code's Source Code Form is governed by the Mozilla Public
@@ -44,6 +51,8 @@ GCC runtime library
 The GCC runtime is covered by GPL-3.0-or-later with the GCC Runtime Library
 Exception 3.1. See LICENSE and licenses/gcc-runtime-exception.txt.
 
-Artwork and audio
+Artwork, font and audio
 See assets/ARTWORK.txt. Nintendo artwork is not covered by the project's GPL
 license.
+The interface uses the public-domain X11 misc-fixed font; its notice and source
+are recorded in licenses/x11-fixed.txt. Studio's music and effects are original.

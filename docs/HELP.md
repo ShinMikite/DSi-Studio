@@ -4,7 +4,7 @@
 
 ## Where is the download?
 
-Download **DSiStudio-0.4.4.zip** from [Releases](https://github.com/ShinMikite/DSi-Studio/releases). Extract it and open **START HERE.txt**. GitHub's **Code → Download ZIP** contains project source files, not the finished app.
+Download **DSiStudio-0.4.5.zip** from [Releases](https://github.com/ShinMikite/DSi-Studio/releases). Extract it and open **START HERE.txt**. GitHub's **Code → Download ZIP** contains project source files, not the finished app.
 
 ## Do I need a Windows app?
 
@@ -40,13 +40,33 @@ Studio can read the game card but does not have the access needed to back up or 
 
 Check that it is DSiWare, that the archive is unpacked, and that the whole game folder is inside **DSiWare** on the selected card. Original numbered files need Studio 0.4.3 or later. Choose **Scan** after adding files. Encrypted content is not supported. Studio is not a DS cartridge-game installer.
 
+The library reads up to 256 games and searches up to eight folder levels below **DSiWare**. Very long paths are skipped. If a game is missing, try placing its whole folder directly inside **DSiWare** with a shorter folder name.
+
+## Can I use games from another region?
+
+The game's supported regions must include your DSi's region. Studio checks this before installation and does not bypass the restriction. Hardware testing has used USA DSi consoles with DSpico; other regions and models have not been verified.
+
+## Can I replace, update or remove an installed game?
+
+Studio adds games. It does not overwrite, update or uninstall existing titles. A title already present on the console is marked **Installed**, and its copy button is disabled. Existing saves are preserved.
+
+## What happens to save files?
+
+For a new installation, Studio creates the save files required by the game. Optional existing saves can be supplied beside the game as `.pub` (public), `.prv` (private) and `.bnr` (banner), using the same filename before the extension. For `Game.nds`, use `Game.pub`; for original content named `00000001`, use `00000001.pub`. Each supplied save must have the size the game expects. This is optional; the normal extracted-folder workflow creates fresh saves.
+
 ## What does Switch card mean?
 
-It changes where Studio looks for games: the microSD inside the DSpico, or the SD card in the DSi's side slot. The current location is shown at the top of the library. The other card must be accessible to the current launch method.
+It changes where Studio looks for games and keeps the required console backup: the microSD inside the DSpico, or the SD card in the DSi's side slot. The current location is shown at the top of the library. The other card must be accessible to the current launch method. Switching cards requires a backup check on the newly selected card.
 
 ## Why is it checking every byte of my backup?
 
-That is the full backup check. It can take several minutes and does not write to the DSi. Version 0.4 and later reuse a successful check for later installations in the same session. Restarting Studio, switching cards or a failed check can require a new full check. Choosing **Backup** manually also runs a full check.
+Studio reads the entire backup and compares its SHA-256 checksum with the record saved when it was created. This detects unreadable, truncated or changed backup data. It also checks that the backup belongs to this DSi. The check can take several minutes and does not write to the console.
+
+A successful check is reused for later installations in the same session. Restarting Studio, switching cards, changed backup files or a failed check can require a new full check. Choosing **Backup** manually also runs a full check. This verifies the saved image; it does not compare it with the console's current games and saves.
+
+## Does Backup update my existing backup?
+
+No. If a completed backup exists for this console, **Backup** verifies it without replacing it. Later installations and save changes are not added to that image. Keep both `nand.bin` and `backup.meta` together, and keep separate current copies of any saves or photos you want to preserve. See [Backups and recovery](RECOVERY.md).
 
 ## Can I install several games without restarting?
 
@@ -54,9 +74,17 @@ Yes, one at a time. After **Added to your DSi**, dismiss the message and choose 
 
 ## What does DSi free mean?
 
-In Studio 0.4.4 and later, the library's top screen shows the remaining space available for game installation in blocks and MB. A block is 128 KiB. The figure accounts for Studio's game-storage limit and the internal-storage reserve it keeps free. Game files, saves and installation overhead all use space, so Studio still checks each installation before copying.
+In Studio 0.4.4 and later, the library's top screen shows the remaining space available under Studio's installation limits. A block is 128 KiB; the app's MB display uses 1,048,576 bytes per MB. Studio uses a 128 MiB game-storage budget and keeps at least 1 MiB of internal storage free. Game files, saves and installation overhead all use space, so Studio still checks each installation before copying.
 
-The readout refreshes when you open or scan the library and after every installation attempt. If the Home Menu has no free title slots, it says the menu is full. If Studio cannot read the storage information, it shows that the figure is unavailable.
+The readout refreshes when you open or scan the library and after every installation attempt. If Studio's title-slot limit is reached, it says the menu is full. If Studio cannot read the storage information, it shows that the figure is unavailable.
+
+## Why does the music stop during a backup or installation?
+
+Music pauses while Studio backs up, checks or copies files and resumes in the library. Use the console's volume controls for music and sound effects.
+
+## Studio says Previous copy found
+
+An unfinished installation is still staged on internal storage. Studio stops rather than overwriting it. Keep your backup and report the exact message through the help link below. Do not delete internal files or repeatedly retry the copy.
 
 ## Can I use one card with several DSi consoles?
 

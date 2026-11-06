@@ -6,7 +6,7 @@ Studio focuses on complete extracted game folders, required console backups and 
 
 **[Start here](docs/GETTING-STARTED.md) · [Help](docs/HELP.md) · [Backups and recovery](docs/RECOVERY.md)**
 
-**[Download DSi Studio 0.4.4](https://github.com/ShinMikite/DSi-Studio/releases/download/v0.4.4/DSiStudio-0.4.4.zip)**
+**[Download DSi Studio 0.4.5](https://github.com/ShinMikite/DSi-Studio/releases/download/v0.4.5/DSiStudio-0.4.5.zip)**
 
 Extract the ZIP and open **START HERE.txt**. Copy the folders inside **COPY TO SD CARD** onto your DSpico microSD.
 
@@ -28,7 +28,7 @@ You need a DSi, its charger, a working DSpico with DSi storage access, and a mic
 
 ## Download
 
-Get **DSiStudio-0.4.4.zip** from [Releases](https://github.com/ShinMikite/DSi-Studio/releases). The source ZIP is for building the app yourself.
+Get **DSiStudio-0.4.5.zip** from [Releases](https://github.com/ShinMikite/DSi-Studio/releases). The source ZIP is for building the app yourself.
 
 GitHub's **Code → Download ZIP** downloads source code, not a ready-to-use app.
 

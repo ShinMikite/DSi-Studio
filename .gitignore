@@ -16,6 +16,7 @@
 !/licenses/blocksds-crt-zlib.txt
 !/licenses/picolibc.txt
 !/licenses/gcc-runtime-exception.txt
+!/licenses/x11-fixed.txt
 !/Makefile
 !/Makefile.arm7
 !/Makefile.arm9
@@ -68,6 +69,9 @@
 !/assets/
 /assets/*
 !/assets/ARTWORK.txt
+!/assets/fonts/
+/assets/fonts/*
+!/assets/fonts/6x10.bdf
 !/assets/icon.bmp
 !/assets/dsi-shop-icon.png
 !/assets/pico/
