@@ -54,14 +54,60 @@ class InstallerTests(unittest.TestCase):
         sentinel.parent.mkdir(parents=True)
         sentinel.write_bytes(b'existing save must survive')
 
-    def run_install(self, folder, fault=0, scenario='ok'):
-        completed = subprocess.run([str(self.binary), str(fault), scenario], cwd=folder,
+    def run_install(self, folder, fault=0, scenario='ok', game='card/game.nds'):
+        completed = subprocess.run([str(self.binary), str(fault), scenario, game], cwd=folder,
                                    capture_output=True, text=True)
         self.assertEqual(completed.returncode, 0, completed.stderr)
         values = completed.stdout.strip().split(' ', 4)
         self.assertEqual((folder/'nand/title/00030004/12345678/data/public.sav').read_bytes(),
                          b'existing save must survive')
         return tuple(map(int, values[:4])), values[4] if len(values) > 4 else ''
+
+    def test_original_folder_installs_and_creates_saves(self):
+        for content, metadata in [('00000001', 'tmd.1'), ('00000001.app', 'title.tmd')]:
+            with self.subTest(content=content), tempfile.TemporaryDirectory() as tmp:
+                folder = Path(tmp); self.fixture(folder)
+                (folder/'card/game.nds').rename(folder/'card'/content)
+                record = (folder/'card/game.tmd').read_bytes()
+                (folder/'card/game.tmd').unlink()
+                (folder/'card'/metadata).write_bytes(record + bytes(2312-520))
+                # Original filenames also support optional same-stem save files.
+                (folder/'card/00000001.pub').write_bytes(bytes([37])*4096)
+                (success, _, unlocks, _), _ = self.run_install(folder, game='card/'+content)
+                self.assertEqual((success, unlocks), (1, 1))
+                self.assertEqual((folder/TITLE/'content/title.tmd').read_bytes(), record)
+                self.assertEqual((folder/TITLE/'data/public.sav').read_bytes(), bytes([37])*4096)
+                self.assertEqual((folder/TITLE/'data/private.sav').stat().st_size, 4096)
+                self.assertEqual((folder/TITLE/'data/banner.sav').stat().st_size, 16384)
+
+    def test_original_folder_preconditions_never_unlock_storage(self):
+        for scenario in ('signature', 'digest'):
+            with self.subTest(scenario=scenario), tempfile.TemporaryDirectory() as tmp:
+                folder = Path(tmp); self.fixture(folder)
+                (folder/'card/game.nds').rename(folder/'card/00000001')
+                (folder/'card/game.tmd').rename(folder/'card/tmd.1')
+                (success, _, unlocks, _), _ = self.run_install(folder, scenario=scenario, game='card/00000001')
+                self.assertEqual((success, unlocks), (0, 0))
+
+    def test_metadata_is_resolved_again_before_installing(self):
+        for problem in ('missing', 'wrong-content', 'conflicting-version'):
+            with self.subTest(problem=problem), tempfile.TemporaryDirectory() as tmp:
+                folder = Path(tmp); self.fixture(folder)
+                (folder/'card/game.nds').rename(folder/'card/00000001')
+                tmd = folder/'card/game.tmd'
+                if problem == 'missing':
+                    tmd.unlink()
+                else:
+                    data = bytearray(tmd.read_bytes())
+                    if problem == 'wrong-content':
+                        struct.pack_into('>I', data, 0x1e4, 2)
+                        tmd.unlink()
+                    else:
+                        data[0x1f4] = 1
+                    (folder/'card/tmd.2').write_bytes(data)
+                (success, _, unlocks, _), _ = self.run_install(folder, game='card/00000001')
+                self.assertEqual((success, unlocks), (0, 0))
+                self.assertFalse((folder/STAGE).exists())
 
     def test_every_success_path_io_failure(self):
         with tempfile.TemporaryDirectory() as tmp:

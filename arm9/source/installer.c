@@ -13,6 +13,7 @@
 #endif
 #include "ticket0.h"
 #include "messages.h"
+#include "game_files.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -144,15 +145,12 @@ bool studio_install(StudioGame *g) {
     if(!studio_nand || !studio_crypto) { studio_notice("DSi ACCESS NEEDED","Copying needs DSi NAND access. Use DSpico with a DSi-mode entry point or DSi ntrboot. Ordinary R4 launch is browse-only."); return false; }
     if(!studio_backup(true)) return false;
     // Reload everything immediately before installation; cached UI metadata is never authoritative.
-    StudioGame checked={0}; uint8_t h[0x240],t[2312]; char tm[STUDIO_PATH];
+    StudioGame checked={0}; uint8_t h[0x240],t[520];
     if(!studio_read(g->path,h,sizeof(h)) || !studio_header(h,sizeof(h),studio_size(g->path),&checked)) error="The game file is incomplete or unsupported.";
-    size_t len=0;
-    if(!error && studio_sidecar(g->path,".tmd",tm,sizeof(tm))) len=studio_size(tm);
-    if(!error && (len!=520 && len!=2312)) error="A matching retail .tmd file is required beside the game.";
-    if(!error && (!studio_read(tm,t,len) || !studio_tmd(t,len,&checked))) error="Game and title metadata do not match.";
+    snprintf(checked.path,sizeof(checked.path),"%s",g->path);
+    if(!error && !studio_game_metadata(&checked,t)) error=checked.issue;
     if(!error && !(checked.regions&(1u<<studio_region))) error="This game does not support your console's region.";
     if(error) { studio_backup_reset(); studio_notice("CANNOT COPY",error); return false; }
-    snprintf(checked.path,sizeof(checked.path),"%s",g->path);
     char dst[96],stage[96],tick[96],sticket[96],path[128];
     snprintf(dst,sizeof(dst),"nand:/title/00030004/%08lx",(unsigned long)checked.id);
     snprintf(stage,sizeof(stage),"nand:/tmp/dsistudio/%08lx",(unsigned long)checked.id);

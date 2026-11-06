@@ -33,7 +33,7 @@ bool studio_tmd(const uint8_t *p,size_t n,StudioGame *g) {
 }
 bool studio_sidecar(const char *path,const char *ext,char *out,size_t cap) {
     const char *dot=strrchr(path,'.'), *slash=strrchr(path,'/');
-    if(!dot || (slash && dot<slash)) return false;
+    if(!dot || (slash && dot<slash)) dot=path+strlen(path);
     size_t n=dot-path, e=strlen(ext); if(n+e+1>cap) return false;
     memcpy(out,path,n); memcpy(out+n,ext,e+1); return true;
 }
@@ -41,4 +41,22 @@ bool studio_extension(const char *path) {
     const char *d=strrchr(path,'.'); if(!d || strlen(d)!=4) return false;
     char e[5]; for(int i=0;i<5;i++) e[i]=tolower((unsigned char)d[i]);
     return !strcmp(e,".nds") || !strcmp(e,".dsi") || !strcmp(e,".app") || !strcmp(e,".srl");
+}
+bool studio_content_name(const char *path,uint32_t *id) {
+    const char *name=strrchr(path,'/'); name=name?name+1:path;
+    size_t n=strlen(name);
+    if(n!=8 && !(n==12 && name[8]=='.' &&
+       tolower((unsigned char)name[9])=='a' && tolower((unsigned char)name[10])=='p' &&
+       tolower((unsigned char)name[11])=='p')) return false;
+    uint32_t value=0;
+    for(int i=0;i<8;i++) {
+        unsigned char c=(unsigned char)tolower((unsigned char)name[i]);
+        if(!((c>='0' && c<='9') || (c>='a' && c<='f'))) return false;
+        value=(value<<4)|(c<='9'?c-'0':c-'a'+10);
+    }
+    if(id) *id=value;
+    return true;
+}
+bool studio_game_file(const char *path) {
+    return studio_extension(path) || studio_content_name(path,NULL);
 }

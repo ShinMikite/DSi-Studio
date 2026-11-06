@@ -67,10 +67,11 @@ static bool studio_read(const char *path,void *out,size_t size) {
 #define remove host_remove
 #define statvfs(path,fs) host_statvfs(path,fs)
 #define STUDIO_INSTALLER_HOST_TEST
+#include "../common/game_files.c"
 #include "../arm9/source/installer.c"
 
 int main(int argc,char **argv) {
-    assert(argc==3);
+    assert(argc==3 || argc==4);
     fault_at=atoi(argv[1]);
     const char *scenario=argv[2];
     backup_ok=strcmp(scenario,"backup")!=0;
@@ -83,7 +84,7 @@ int main(int argc,char **argv) {
     low_space=!strcmp(scenario,"space");
     commit_failure=!strcmp(scenario,"commit") || !strcmp(scenario,"rollback");
     remove_failure=!strcmp(scenario,"rollback");
-    StudioGame game={0}; strcpy(game.path,"card/game.nds");
+    StudioGame game={0}; snprintf(game.path,sizeof(game.path),"%s",argc==4?argv[3]:"card/game.nds");
     bool result=studio_install(&game);
     assert(protected && !guarded);
     assert(game.installed==result || !strcmp(notice,"ALREADY ON YOUR DSi"));

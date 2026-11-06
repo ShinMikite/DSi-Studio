@@ -2,7 +2,7 @@
 
 [Back to DSi Studio](../README.md) · [Questions and help](HELP.md)
 
-Download **[DSiStudio-0.4.2.zip](https://github.com/ShinMikite/DSi-Studio/releases/download/v0.4.2/DSiStudio-0.4.2.zip)**. Do not use GitHub's **Code → Download ZIP** as the app download.
+Download **[DSiStudio-0.4.3.zip](https://github.com/ShinMikite/DSi-Studio/releases/download/v0.4.3/DSiStudio-0.4.3.zip)**. Do not use GitHub's **Code → Download ZIP** as the app download.
 
 ## 1. Check your DSpico first
 
@@ -28,36 +28,27 @@ If you already have Studio, save a copy of your old **DSiStudio.nds** on the com
 
 ## 3. Add a game
 
-Go back to the card's first folder. Create a folder named **DSiWare**.
+Go back to the card's first folder and open **DSiWare**. Create it if needed.
 
-Drag your complete game folder into **DSiWare**, or copy the game file and its matching `.tmd` there directly. For example:
+Extract your game's archive on your computer, then drag the **whole extracted game folder** into **DSiWare**. Leave all the filenames unchanged. Repeat for each game, keeping each game version in its own folder. Studio does not open ZIP archives on the console.
 
-| Where on the card | What goes there |
-| --- | --- |
-| `Games` | `DSiStudio.nds` |
-| `DSiWare` | `Game.nds` and `Game.tmd` |
-
-`Game` is an example name. The two files must have the same name before the ending: **Game.nds + Game.tmd**. The `.tmd` must belong to that exact version of the game. Renaming an unrelated file does not make it match.
-
-You may put each pair in its own folder inside **DSiWare**. Games must be unpacked; Studio does not open ZIP archives on the console. Already-decrypted `.dsi`, `.srl` and `.app` game files are also supported, with a matching `.tmd` beside them.
-
-**The game folder's name does not matter.** Some prepared collections use a numeric title ID instead of a game name. Both of these layouts work:
+For example, an original extracted folder and an older prepared folder can sit together:
 
 ```text
 DSiWare/
   My Game/
-    game.nds
-    game.tmd
+    00000000
+    tmd.0
   000300044b4d4745/
     game.nds
     game.tmd
 ```
 
-These are examples of two naming styles, not a requirement to make two copies. Keep existing folders as they are. For a new game, choose any folder name you recognize and put its matching files inside. Studio reads the game's display name from the game file, not the folder name.
+Your files may instead be called `00000001` and `tmd.1`, or have another content number and metadata version. **Do not rename them to match the example.** Studio finds the matching files in the same folder and checks them before installation. It does not rename, convert or modify your game folder.
 
-**Does your extracted folder contain `00000000` and `tmd.0` instead?** Those are original content and metadata filenames, not the layout Studio 0.4.2 reads automatically. For an already-decrypted, single-content game whose matching files have been identified, rename the content to `game.nds` and its matching metadata to `game.tmd`. Keep both in the same game folder. The metadata may instead be named `tmd.1` or another `tmd.N`; it must match that exact content. Keep the complete metadata file; no trimming is needed. Studio does not use `titleKey.bin` or `titlePass.txt`.
+The folder name does not matter. Readable game names and numeric title IDs both work. Studio reads the display name and icon from the game itself. Existing prepared folders can stay as they are; you do not need a second copy.
 
-Renaming does not decrypt content or resolve multiple versions. If there are several content or metadata files and you do not know which belong together, see [Help](HELP.md#the-files-inside-my-zip-are-numbered-or-named-tmd256) before preparing the pair.
+Supported games contain already-decrypted DSiWare content: an eight-digit hexadecimal content filename, or a `.nds`, `.dsi`, `.srl` or `.app` file, plus matching retail metadata (`tmd.0`, `tmd.1`, another `tmd.N`, `tmd` or a `.tmd` file). Missing, mismatched or ambiguous metadata blocks installation. Studio verifies the metadata signature and complete content before writing. Encrypted content and multi-content packages are not supported. Extra `titleKey.bin` and `titlePass.txt` files can stay in the folder; Studio does not use them. No PC helper is needed.
 
 **Only have the game file?** Supply its matching `.tmd` before continuing. Studio runs offline and does not download missing files. [More help](HELP.md#i-only-have-a-game-file-no-tmd).
 

@@ -147,7 +147,7 @@ void ui_help(int page) {
         }
     } else {
         const char *body=page==0?
-            "1. Copy ROM + .tmd to /DSiWare.\n2. Back up this DSi when prompted.\n3. Select a game; tap Copy to DSi.\n4. Let Studio check your files.\n5. Hold Copy to confirm.\n6. Restart when copying is done.":page==2?
+            "1. Extract game folders to /DSiWare.\n2. Keep original files and names.\n3. Back up this DSi when prompted.\n4. Select a game; tap Copy to DSi.\n5. Let checks finish; hold to copy.\n6. Restart when copying is done.":page==2?
             "A backup is required for each DSi.\nOther consoles' backups stay saved.\nKeep a copy on your PC.\nFull check: once per Studio session.\nSwitching cards starts a new check.\nBackup checks again on demand.":
             page==3?"Copying changes internal storage.\nA failed write can stop your DSi\nfrom starting. Backups cannot\nguarantee recovery. Keep the charger\nconnected. Power off before removing\na card. Never interrupt copying.":
             "Recovery needs DSi ntrboot or\nhardware access to NAND.\nStudio cannot restore a backup.\nNormal flashcard boot isn't enough.\nRead the recovery guide:\ngithub.com/ShinMikite/DSi-Studio";

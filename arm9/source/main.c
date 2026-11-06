@@ -2,6 +2,7 @@
 #include "studio.h"
 #include "crypto.h"
 #include "audio.h"
+#include "game_files.h"
 #include <fat.h>
 #include <nds/arm9/sdmmc.h>
 #include <stdio.h>
@@ -105,15 +106,11 @@ static void scan_dir(const char *path,int depth) {
         if(n<0 || n>=(int)sizeof(full)) continue;
         struct stat st; if(stat(full,&st)) continue;
         if(S_ISDIR(st.st_mode)) { scan_dir(full,depth+1); continue; }
-        if(!S_ISREG(st.st_mode) || !studio_extension(full)) continue;
+        if(!S_ISREG(st.st_mode) || !studio_game_file(full)) continue;
         uint8_t h[0x240]; StudioGame *g=&studio_games[studio_count]; memset(g,0,sizeof(*g));
         if(!studio_read(full,h,sizeof(h)) || !studio_header(h,sizeof(h),st.st_size,g)) continue;
         snprintf(g->path,sizeof(g->path),"%s",full); banner(g,h);
-        char tmd[STUDIO_PATH]; uint8_t t[2312];
-        size_t len=0;
-        if(studio_sidecar(full,".tmd",tmd,sizeof(tmd))) len=studio_size(tmd);
-        if((len==520 || len==2312) && studio_read(tmd,t,len)) studio_tmd(t,len,g);
-        else snprintf(g->issue,sizeof(g->issue),"Put the matching .tmd beside this ROM, with the same filename.");
+        uint8_t t[520]; studio_game_metadata(g,t);
         if(studio_nand) {
             char installed[80]; snprintf(installed,sizeof(installed),"nand:/title/00030004/%08lx",(unsigned long)g->id);
             g->installed=access(installed,F_OK)==0;

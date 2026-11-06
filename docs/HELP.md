@@ -4,7 +4,7 @@
 
 ## Where is the download?
 
-Download **DSiStudio-0.4.2.zip** from [Releases](https://github.com/ShinMikite/DSi-Studio/releases). Extract it and open **START HERE.txt**. GitHub's **Code → Download ZIP** contains project source files, not the finished app.
+Download **DSiStudio-0.4.3.zip** from [Releases](https://github.com/ShinMikite/DSi-Studio/releases). Extract it and open **START HERE.txt**. GitHub's **Code → Download ZIP** contains project source files, not the finished app.
 
 ## Do I need a Windows app?
 
@@ -12,7 +12,7 @@ No. Copy complete game folders to **DSiWare** on the card using your computer's 
 
 ## I only have a game file, no .tmd
 
-The current version needs a matching `.tmd` information file alongside the game. Studio uses it to check the game and version before installation. Check whether it came with your original game backup or archive.
+The game needs its matching metadata in the same folder. It may be named `tmd.0`, `tmd.1`, another `tmd.N`, `tmd` or end in `.tmd`. Studio recognizes these names automatically and uses the file to check the game and version before installation. Check whether it came with your original game backup or archive.
 
 If it is missing, supply the matching file from your game backup before installing. Do not rename an unrelated file to `.tmd`. Studio checks that both files belong to the same game and version.
 
@@ -20,17 +20,17 @@ If it is missing, supply the matching file from your game backup before installi
 
 That is normal. Prepared collections sometimes name folders after each game's title ID, such as `000300044b4d4745`. Studio accepts those folders and folders named after the game. It reads the display name from the game file.
 
-Leave your existing folders alone. For new games, drag a folder containing a matching pair such as `game.nds` and `game.tmd` into **DSiWare**. You do not need to look up a title ID or create a numbered folder yourself.
+Leave your existing folders alone. For new games, drag the complete extracted folder into **DSiWare** without renaming its files. You do not need to look up a title ID or create a numbered folder yourself.
 
 ## The files inside my ZIP are numbered or named tmd.256
 
-Studio 0.4.2 does not automatically recognize extensionless content such as `00000000` or metadata named `tmd.0`, `tmd.1` or `tmd.256`. Extracting that folder onto the card is not sufficient yet.
+Studio **0.4.3 and later** recognize original filenames such as `00000000` plus `tmd.0`, or `00000001` plus `tmd.1`. Extract the entire folder into **DSiWare** and leave the names unchanged. Older Studio versions require an update to read this layout.
 
-For an already-decrypted, single-content game with an identified matching pair, rename the content file to `game.nds` and the matching metadata to `game.tmd`. Put them together in a folder under **DSiWare**. Keep the full metadata file; no trimming is needed. Studio does not use `titleKey.bin` or `titlePass.txt`.
+The content must already be decrypted and the matching retail metadata must be present in the same folder. Studio does not use `titleKey.bin` or `titlePass.txt`, and it does not download missing files. Existing `game.nds` + `game.tmd` folders remain supported.
 
-Renaming does not decrypt a file or make mismatched versions compatible. If several content or metadata files are present, ask for help identifying the pair using filenames and extensions only; do not upload the archive, game or keys.
+## Studio says more than one game version matches
 
-This concerns the filenames inside the folder. A numeric folder containing `game.nds` and `game.tmd` is already in a supported layout.
+Keep each game version in its own folder under **DSiWare**, using the files together as supplied in that version's original archive. Do not combine files from different versions. Studio stops instead of choosing an arbitrary metadata file. If you are unsure which files belong together, ask for help with filenames and extensions only; do not upload games or keys.
 
 ## Studio says Browsing only
 
@@ -38,7 +38,7 @@ Studio can read the game card but does not have the access needed to back up or 
 
 ## A game is missing from the library
 
-Check that it is DSiWare, that the archive is unpacked, and that the game is inside **DSiWare** on the selected card. Choose **Scan** after adding files. Studio is not a DS cartridge-game installer.
+Check that it is DSiWare, that the archive is unpacked, and that the whole game folder is inside **DSiWare** on the selected card. Original numbered files need Studio 0.4.3 or later. Choose **Scan** after adding files. Encrypted content is not supported. Studio is not a DS cartridge-game installer.
 
 ## What does Switch card mean?
 

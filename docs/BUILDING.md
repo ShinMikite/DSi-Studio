@@ -28,7 +28,7 @@ python -m pip install -r tests/requirements.txt
 python tools/test.py
 ```
 
-Tests cover catalog parsing, backup formats and session checks, touch controls, and installer error handling on a disposable host filesystem. The installer tests substitute hardware, cryptography and save formatting; they do not emulate a DSi. UI previews are written to `artifacts/`.
+Tests cover catalog parsing, original and prepared game folders, mismatched and ambiguous metadata, backup formats and session checks, touch controls, and installer error handling on a disposable host filesystem. The installer tests substitute hardware, cryptography and save formatting; they do not emulate a DSi. UI previews are written to `artifacts/`.
 
 ## Assets
 

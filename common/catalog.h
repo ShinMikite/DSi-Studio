@@ -21,3 +21,5 @@ bool studio_header(const uint8_t *p, size_t n, uint64_t size, StudioGame *g);
 bool studio_tmd(const uint8_t *p, size_t n, StudioGame *g);
 bool studio_sidecar(const char *path, const char *ext, char *out, size_t cap);
 bool studio_extension(const char *path);
+bool studio_content_name(const char *path, uint32_t *id);
+bool studio_game_file(const char *path);

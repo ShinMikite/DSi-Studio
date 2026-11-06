@@ -1,4 +1,4 @@
-DSi Studio 0.4.2
+DSi Studio 0.4.3
 ===============
 
 Read this before copying files to your card.
@@ -31,22 +31,25 @@ alone does not provide recovery. This is experimental software.
    that file. Leave your DSiStudio/backups folder on the card intact.
 
 3. ADD YOUR GAME FOLDERS
-   Drag your complete game folders into DSiWare on the card.
-   Each unpacked game needs a matching .tmd file beside it, for example:
+   Extract each game archive on your computer, then drag the complete
+   extracted folder into DSiWare on the card. Leave all filenames unchanged.
+   For example, your original game folder may contain:
 
-     DSiWare/My Game/Game.nds
-     DSiWare/My Game/Game.tmd
+     DSiWare/My Game/00000000
+     DSiWare/My Game/tmd.0
+
+   Files such as 00000001 and tmd.1 work too. Do not rename your files
+   to match this example. Keep each game version in its own folder.
+   Existing Game.nds + Game.tmd folders still work without changes.
 
    The folder name is your choice. Existing folders named with numeric
    title IDs work too; leave them as they are. You do not need to look up
    a title ID for new games. Studio reads names from the game files.
 
-   Names before the dot must match. The .tmd must belong to that exact
-   game and version. Studio does not download missing files or open ZIPs.
-
-   Files named 00000000 or tmd.0 are not recognized automatically in 0.4.2.
-   They need to be identified and named as a matching, already-decrypted
-   game and metadata pair first. See the full guide below for this layout.
+   Studio finds the matching information and checks the game before copying.
+   No PC helper is needed. Games must contain already-decrypted content
+   and matching retail metadata. Studio does not decrypt content, download
+   missing files or open ZIPs. See the full guide for supported layouts.
 
 4. OPEN STUDIO
    Eject the microSD using your computer's eject option. Return it to the

@@ -24,10 +24,19 @@ int main(void) {
     t[0x140]='X'; assert(!studio_tmd(t,520,&g));
     char out[64]; assert(studio_sidecar("fat:/DSiWare/test.NDS",".tmd",out,sizeof(out)));
     assert(!strcmp(out,"fat:/DSiWare/test.tmd"));
-    assert(!studio_sidecar("fat:/dotted.dir/test",".tmd",out,sizeof(out)));
+    assert(studio_sidecar("fat:/dotted.dir/00000000",".pub",out,sizeof(out)));
+    assert(!strcmp(out,"fat:/dotted.dir/00000000.pub"));
     assert(!studio_sidecar("fat:/DSiWare/test.nds",".tmd",out,5));
     assert(studio_extension("game.NDS") && studio_extension("game.app"));
     assert(!studio_extension("noextension") && !studio_extension("test.zip") && !studio_extension("test.ndsx"));
-    puts("Catalog validation: all 22 assertions passed.");
+    uint32_t id;
+    assert(studio_content_name("fat:/a/00000001",&id) && id==1);
+    assert(studio_content_name("ABCDEF12.APP",&id) && id==0xabcdef12);
+    assert(studio_game_file("00000000") && studio_game_file("named.NDS"));
+    assert(!studio_game_file("1234567") && !studio_game_file("0000000g"));
+    assert(!studio_game_file("titleKey.bin") && !studio_game_file("tmd.256"));
+    assert(!studio_game_file("00000000.zip") && !studio_game_file("000000000"));
+    assert(!studio_content_name("00000000.nds",NULL));
+    puts("Catalog validation passed.");
     return 0;
 }
