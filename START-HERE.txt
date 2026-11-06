@@ -37,8 +37,16 @@ alone does not provide recovery. This is experimental software.
      DSiWare/My Game/Game.nds
      DSiWare/My Game/Game.tmd
 
+   The folder name is your choice. Existing folders named with numeric
+   title IDs work too; leave them as they are. You do not need to look up
+   a title ID for new games. Studio reads names from the game files.
+
    Names before the dot must match. The .tmd must belong to that exact
    game and version. Studio does not download missing files or open ZIPs.
+
+   Files named 00000000 or tmd.0 are not recognized automatically in 0.4.2.
+   They need to be identified and named as a matching, already-decrypted
+   game and metadata pair first. See the full guide below for this layout.
 
 4. OPEN STUDIO
    Eject the microSD using your computer's eject option. Return it to the

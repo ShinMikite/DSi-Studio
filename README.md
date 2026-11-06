@@ -11,12 +11,14 @@ Extract the ZIP and open **START HERE.txt**. Copy the folders inside **COPY TO S
 ## Using Studio
 
 1. Copy Studio to the **Games** folder on your DSpico microSD card.
-2. Drag your complete game folders into **DSiWare** on the card. Each unpacked game needs its matching `.tmd` file.
+2. Put each unpacked game and its matching metadata in **DSiWare**, named as a pair such as `game.nds` and `game.tmd`. Original archive filenames may need changing; see [adding a game](docs/GETTING-STARTED.md#3-add-a-game).
 3. Open Studio and complete the required backup for your DSi.
 4. Choose a game and select **Copy to DSi**. Follow the checks and hold to confirm.
 5. Add another game, or power off, remove the DSpico and restart to play from the Home Menu.
 
 Studio runs offline. Users supply their own games and matching information files. Games, firmware and console backups are not included.
+
+Game folders can have names or numeric title IDs. Both `DSiWare/My Game/game.nds` and `DSiWare/000300044b4d4745/game.nds` work when the matching `game.tmd` is beside the game. You do not need to rename existing folders; Studio reads the display name from the game itself.
 
 You need a DSi, its charger, a working DSpico with DSi storage access, and a microSD card. An ordinary R4 launch can browse games but cannot install them with Studio. The [setup guide](docs/GETTING-STARTED.md) explains the folders and screens.
 

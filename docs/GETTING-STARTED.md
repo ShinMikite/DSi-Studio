@@ -41,6 +41,24 @@ Drag your complete game folder into **DSiWare**, or copy the game file and its m
 
 You may put each pair in its own folder inside **DSiWare**. Games must be unpacked; Studio does not open ZIP archives on the console. Already-decrypted `.dsi`, `.srl` and `.app` game files are also supported, with a matching `.tmd` beside them.
 
+**The game folder's name does not matter.** Some prepared collections use a numeric title ID instead of a game name. Both of these layouts work:
+
+```text
+DSiWare/
+  My Game/
+    game.nds
+    game.tmd
+  000300044b4d4745/
+    game.nds
+    game.tmd
+```
+
+These are examples of two naming styles, not a requirement to make two copies. Keep existing folders as they are. For a new game, choose any folder name you recognize and put its matching files inside. Studio reads the game's display name from the game file, not the folder name.
+
+**Does your extracted folder contain `00000000` and `tmd.0` instead?** Those are original content and metadata filenames, not the layout Studio 0.4.2 reads automatically. For an already-decrypted, single-content game whose matching files have been identified, rename the content to `game.nds` and its matching metadata to `game.tmd`. Keep both in the same game folder. The metadata may instead be named `tmd.1` or another `tmd.N`; it must match that exact content. Keep the complete metadata file; no trimming is needed. Studio does not use `titleKey.bin` or `titlePass.txt`.
+
+Renaming does not decrypt content or resolve multiple versions. If there are several content or metadata files and you do not know which belong together, see [Help](HELP.md#the-files-inside-my-zip-are-numbered-or-named-tmd256) before preparing the pair.
+
 **Only have the game file?** Supply its matching `.tmd` before continuing. Studio runs offline and does not download missing files. [More help](HELP.md#i-only-have-a-game-file-no-tmd).
 
 ## 4. Open Studio

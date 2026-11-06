@@ -16,9 +16,21 @@ The current version needs a matching `.tmd` information file alongside the game.
 
 If it is missing, supply the matching file from your game backup before installing. Do not rename an unrelated file to `.tmd`. Studio checks that both files belong to the same game and version.
 
-## My ZIP contains numbers instead of a game name
+## My game folders are named with numbers
 
-Studio currently reads unpacked game files with a matching `.tmd` beside them. Numbered content files and names such as `tmd.256` must first be identified and named as a matching pair. Ask for help with the filenames and extensions only; do not upload the archive or game.
+That is normal. Prepared collections sometimes name folders after each game's title ID, such as `000300044b4d4745`. Studio accepts those folders and folders named after the game. It reads the display name from the game file.
+
+Leave your existing folders alone. For new games, drag a folder containing a matching pair such as `game.nds` and `game.tmd` into **DSiWare**. You do not need to look up a title ID or create a numbered folder yourself.
+
+## The files inside my ZIP are numbered or named tmd.256
+
+Studio 0.4.2 does not automatically recognize extensionless content such as `00000000` or metadata named `tmd.0`, `tmd.1` or `tmd.256`. Extracting that folder onto the card is not sufficient yet.
+
+For an already-decrypted, single-content game with an identified matching pair, rename the content file to `game.nds` and the matching metadata to `game.tmd`. Put them together in a folder under **DSiWare**. Keep the full metadata file; no trimming is needed. Studio does not use `titleKey.bin` or `titlePass.txt`.
+
+Renaming does not decrypt a file or make mismatched versions compatible. If several content or metadata files are present, ask for help identifying the pair using filenames and extensions only; do not upload the archive, game or keys.
+
+This concerns the filenames inside the folder. A numeric folder containing `game.nds` and `game.tmd` is already in a supported layout.
 
 ## Studio says Browsing only
 
